@@ -23,9 +23,15 @@ public class TestBase {
         Configuration.baseUrl = apiConfig.webUrl();
         RestAssured.baseURI = apiConfig.apiUrl();
 
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("version", "100");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+
 
         RemoteConfig remoteConfig = ConfigFactory.create(RemoteConfig.class);
         Configuration.remote = remoteConfig.remoteUrl();
+        System.getProperty("remote", remoteConfig.remoteUrl());
+
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
